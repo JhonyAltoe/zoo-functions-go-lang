@@ -4,19 +4,25 @@ import (
 	"github.com/jhony/zoo-golang/getdata"
 )
 
-var species = getdata.GetZoo().Species
+var Species = getdata.GetZoo().Species
 
-func GSBI(id *string) *getdata.Specie {
-	var result getdata.Specie
-	test := make([]string, 0)
+type Tspecie = getdata.Specie
 
-	if len(id) {
-		return test
-	} else {
-		for _, v := range species {
-			if v.Id == id {
-				result = v
-			}
+func verifyIfExist(vId string, id []string) bool {
+	for _, v := range id {
+		if vId == v {
+			return true
+		}
+	}
+	return false
+}
+
+func GetSpeciesByIds(ids []string) []Tspecie {
+	var result []Tspecie
+
+	for _, v := range Species {
+		if verifyIfExist(v.Id, ids) {
+			result = append(result, v)
 		}
 	}
 
