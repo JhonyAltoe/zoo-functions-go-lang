@@ -1,3 +1,3 @@
-module github.com/cassiusbessa/zoofunctions
+module github.com/jhony/zoo-golang
 
 go 1.19
