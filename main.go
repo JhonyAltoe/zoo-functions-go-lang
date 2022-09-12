@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/jhony/zoo-golang/getspeciesbyids"
+	"github.com/jhony/zoo-golang/speciepkg"
 )
 
 var ids = []string{
@@ -14,7 +14,7 @@ var ids = []string{
 func main() {
 	fmt.Printf(
 		"%+v\n",
-		getspeciesbyids.GetSpeciesByIds(ids),
-		// getspeciesbyids.Species,
+		// speciepkg.GetSpeciesByIds(ids),
+		speciepkg.GetAnimalsOlderThan("lions", 8),
 	)
 }

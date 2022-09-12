@@ -5,29 +5,29 @@ import (
 	"os"
 )
 
-type Zoo_data struct {
-	Species   []Specie  `json:"species"`
-	Employees []Employe `json:"employees"`
-	Hours     Hours     `json:"hours"`
-	Prices    Prices    `json:"prices"`
+type TZoo_data struct {
+	Species   []TSpecie  `json:"species"`
+	Employees []TEmploye `json:"employees"`
+	Hours     THours     `json:"hours"`
+	Prices    TPrices    `json:"prices"`
 }
 
-type Specie struct {
-	Id           string     `json:"id"`
-	Name         string     `json:"name"`
-	Popularity   int        `json:"popularity"`
-	Location     string     `json:"location"`
-	Availability []string   `json:"availability"`
-	Residents    []Resident `json:"residents"`
+type TSpecie struct {
+	Id           string      `json:"id"`
+	Name         string      `json:"name"`
+	Popularity   int         `json:"popularity"`
+	Location     string      `json:"location"`
+	Availability []string    `json:"availability"`
+	Residents    []TResident `json:"residents"`
 }
 
-type Resident struct {
+type TResident struct {
 	Name string `json:"name"`
 	Sex  string `json:"sex"`
 	Age  int    `json:"age"`
 }
 
-type Employe struct {
+type TEmploye struct {
 	Id             string   `json:"id"`
 	FirstName      string   `json:"firstName"`
 	LastName       string   `json:"lastName"`
@@ -35,7 +35,7 @@ type Employe struct {
 	ResponsibleFor []string `json:"responsibleFor"`
 }
 
-type Hours struct {
+type THours struct {
 	Tuesday struct {
 		Open  int `json:"open"`
 		Close int `json:"close"`
@@ -66,18 +66,18 @@ type Hours struct {
 	}
 }
 
-type Prices struct {
+type TPrices struct {
 	Adult  int `json:"adult"`
 	Senior int `json:"senior"`
 	Child  int `json:"child"`
 }
 
-func GetZoo() Zoo_data {
+func GetZoo() TZoo_data {
 	data, error := os.ReadFile("./data/zoo_data.json")
 	if error != nil {
 		panic(error)
 	}
-	var zoo Zoo_data
+	var zoo TZoo_data
 	json.Unmarshal([]byte(data), &zoo)
 	return zoo
 }
