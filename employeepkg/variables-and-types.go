@@ -6,5 +6,11 @@ import (
 
 var Employees = getdata.GetZoo().Employees
 
-// type Tspecie = getdata.TSpecie
-// type TResident = getdata.TResident
+type TEmploye = getdata.TEmploye
+
+type TEmployeFullName struct {
+	Id       string
+	FullName string
+}
+
+type TEmployeId = string
