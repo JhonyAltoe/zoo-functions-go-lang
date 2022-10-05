@@ -6,5 +6,7 @@ import (
 
 var Species = getdata.GetZoo().Species
 
-type Tspecie = getdata.TSpecie
+type TSpecie = getdata.TSpecie
 type TResident = getdata.TResident
+type TM map[string]int
+type MIKE map[string]string

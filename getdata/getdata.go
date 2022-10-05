@@ -67,9 +67,9 @@ type THours struct {
 }
 
 type TPrices struct {
-	Adult  int `json:"adult"`
-	Senior int `json:"senior"`
-	Child  int `json:"child"`
+	Adult  float64 `json:"adult"`
+	Senior float64 `json:"senior"`
+	Child  float64 `json:"child"`
 }
 
 func GetZoo() TZoo_data {

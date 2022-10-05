@@ -14,3 +14,4 @@ type TEmployeFullName struct {
 }
 
 type TEmployeId = string
+type TManagerId = string

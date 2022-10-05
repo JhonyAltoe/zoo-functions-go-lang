@@ -1,26 +1,37 @@
 package speciepkg
 
-func stringVerifyIntoArr(baseArr []string, s string) bool {
-	for _, v := range baseArr {
-		if s == v {
-			return true
+func CountAnimals(v MIKE) interface{} {
+	if v["Specie"] == "" && v != nil {
+		panic("the key Specie shoudn't be empty")
+	}
+
+	m := make(TM)
+	for _, e := range Species {
+		if v == nil {
+			m[e.Name] = len(e.Residents)
+			continue
+		}
+
+		if e.Name == v["Specie"] {
+			if v["Sex"] == "male" || v["Sex"] == "female" {
+				var count int
+				for _, r := range e.Residents {
+					if r.Sex == v["Sex"] {
+						count++
+					}
+				}
+				m[e.Name] = count
+				break
+			}
+			m[e.Name] = len(e.Residents)
+			break
 		}
 	}
-	return false
+	return m
 }
 
-func verifyIfResidentHasMinAge(residents []TResident, age int) bool {
-	var boolVar = true
-	for _, v := range residents {
-		if v.Age < age {
-			boolVar = false
-		}
-	}
-	return boolVar
-}
-
-func GetSpeciesByIds(ids []string) []Tspecie {
-	var result []Tspecie
+func GetSpeciesByIds(ids []string) []TSpecie {
+	var result []TSpecie
 
 	for _, v := range Species {
 		if stringVerifyIntoArr(ids, v.Id) {
