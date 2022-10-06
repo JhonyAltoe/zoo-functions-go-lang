@@ -1,11 +1,44 @@
 package speciepkg
 
-func CountAnimals(v MIKE) interface{} {
+import "sort"
+
+func GetAnimalMap(options TAnimalOptions) interface{} {
+	var aMapName = make(TAnimalMapName)
+	var aMap = make(TAnimalMap)
+	for _, specie := range Species {
+		if options.IncludeNames {
+			aMapName[specie.Location] = map[string][]string{}
+		} else {
+			aMap[specie.Location] = []string{}
+		}
+		for _, resident := range specie.Residents {
+			if resident.Sex == options.Sex || len(options.Sex) == 0 {
+				var toSort []string
+				if locN := aMapName[specie.Location]; options.IncludeNames {
+					locN[specie.Name] = append(locN[specie.Name], resident.Name)
+					toSort = locN[specie.Name]
+				} else {
+					aMap[specie.Location] = append(aMap[specie.Location], resident.Name)
+					toSort = aMap[specie.Location]
+				}
+				if options.Sorted {
+					sort.Strings(toSort)
+				}
+			}
+		}
+	}
+	if options.IncludeNames {
+		return aMapName
+	}
+	return aMap
+}
+
+func CountAnimals(v TMapS) interface{} {
 	if v["Specie"] == "" && v != nil {
 		panic("the key Specie shoudn't be empty")
 	}
 
-	m := make(TM)
+	m := make(TMapI)
 	for _, e := range Species {
 		if v == nil {
 			m[e.Name] = len(e.Residents)

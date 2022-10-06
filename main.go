@@ -4,7 +4,11 @@ import (
 	"fmt"
 
 	"github.com/jhony/zoo-golang/entrantpkg"
+	"github.com/jhony/zoo-golang/speciepkg"
 )
+
+type TEntrant = entrantpkg.TEntrant
+type TAnimalOptions = speciepkg.TAnimalOptions
 
 func print1(a interface{}) {
 	fmt.Printf("%+v\n\n", a)
@@ -18,8 +22,6 @@ var speciesIds = []string{
 	"0938aa23-f153-4937-9f88-4858b24d6bce",
 	"e8481c1d-42ea-4610-8e11-1752cfc05a46",
 }
-
-type TEntrant = entrantpkg.TEntrant
 
 var entrants = []TEntrant{
 	{Name: "Lara Carvalho", Age: 5},
@@ -37,11 +39,16 @@ var entrants = []TEntrant{
 //	"0e7b460e-acf4-4e17-bcb3-ee472265db83",
 //
 // )
-// type MIKE = speciepkg.MIKE
+type TMapS = speciepkg.TMapS
 
-// var s = MIKE{"Specie": "tigers", "Sex": ""}
+// var s = TMapS{"Specie": "tigers", "Sex": "female"}
+
 // var a = speciepkg.CountAnimals(s)
-var a = entrantpkg.CalculateEntry(entrants)
+
+// var a = entrantpkg.CalculateEntry(entrants)
+
+var s = TAnimalOptions{IncludeNames: true, Sex: "male", Sorted: true}
+var a = speciepkg.GetAnimalMap(s)
 
 func main() {
 	// print2()
